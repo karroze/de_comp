@@ -1,39 +1,46 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+DeComp is an architecture approach that allows developers to build highly scalable applications that
+consist of many independent `Components`, each separated into a standalone package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+This approach allows several great benefits:
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+* 🎸 Component is self-sufficient and standalone; it encapsulates business logic (even complex cases) inside of it and allows greatly reduce code duplication
+* 🧩 Components are reusable not only between different screens but also between multiple applications
+* ⏱️ Each individual component can be developed independently
+* 🔥 To embed a `Component` into our UI you need just one line of code
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## How?
 
-## Features
+### What is a `Component`?
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+A component has its own Ui and business logic based on [bloc](https://pub.dev/packages/bloc) package. A Component specifies
+what it can do (via `Events`), what data or/and events it can produce during its operation (via `Actions`) and what data
+it needs to operate (via `ComponentRepository` contracts).
+
+A component has zero clue about its environment: it does not depend on DI, localization approach, from where and how to get data. Each of those
+tasks is forwarded to a dedicated abstraction level.
+
+A component may contain other components inside of it, while still keeping up to the promise above.
+
+### How does a `Component` gets embedded?
+
+As stated above, a `Component` does not know much about how it's going to be used, nor how to get required data to operate.
+It solely relies on its contracts to describe what it needs.
+
+When we embed such `Component` into our application, we need to provide implementations of those contracts. Here comes the neat part:
+we do that via `Coordinator` and a `View`.
+
+#### `Coordinator`
+
+A `Coordinator` is a class that describes how component (or even components inside that component) communicate with an "outside word" and each other.
+
+### `View` 
+
+A `View` sits above coordinator and has single purpose: to construct `Bloc` needed for our `Component` using your 
+chosen approach: Singleton, DI or anything really.
+
+This makes sense as we operate in a domain of the specific app you are building and not inside the `Component`, 
+hence not hard-wiring any external dependencies and keeping our components standalone.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+It's highly recommended to take a look at `/example` project to understand how it all ties together.
