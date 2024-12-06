@@ -3,13 +3,15 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:de_comp_core/de_comp_core.dart';
 
-abstract class BaseBloc<Event, State, Action, Localization> extends Bloc<Event, State> with DisposableHolderMixin {
+abstract class BaseBloc<Event, State, Action, Localization>
+    extends Bloc<Event, State> with DisposableHolderMixin {
   BaseBloc({
     required State baseState,
     required this.localization,
   }) : super(baseState);
 
-  late final _actionsSubject = StreamController<Action>.broadcast().addToDisposableHolder(disposableHolder);
+  late final _actionsSubject = StreamController<Action>.broadcast()
+      .addToDisposableHolder(disposableHolder);
 
   final Localization localization;
 
