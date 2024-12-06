@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:de_comp_core/de_comp_core.dart';
 
+/// Basic class to extend bloc functionality.
 abstract class BaseBloc<Event, State, Action, Localization>
     extends Bloc<Event, State> with DisposableHolderMixin {
   BaseBloc({

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:de_comp_core/de_comp_core.dart';
 
+/// Extended version of [DisposableHolder] to support Flutter-specific disposables.
 extension DisposableHolderFlutter on DisposableHolder {
   void addBloc<T, E>(Bloc<T, E> bloc) => addCustomDisposable(
         bloc,
