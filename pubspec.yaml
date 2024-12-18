@@ -1,6 +1,6 @@
 name: de_comp
 description: "A component architecture for scalable applications"
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/karroze/de_comp
 repository: https://github.com/karroze/de_comp
 
@@ -10,7 +10,7 @@ environment:
 
 dependencies:
   bloc: ^8.1.4
-  de_comp_core: ^0.0.4
+  de_comp_core: ^0.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6

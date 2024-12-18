@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:de_comp_core/de_comp_core.dart';
+import 'package:flutter/widgets.dart';
 
 /// Extended version of [DisposableHolder] to support Flutter-specific disposables.
 extension DisposableHolderFlutter on DisposableHolder {
@@ -17,6 +18,16 @@ extension DisposableHolderFlutter on DisposableHolder {
         closable,
         closable.close,
       );
+
+  void addTextEditingController(TextEditingController controller) => addCustomDisposable(
+        controller,
+        controller.dispose,
+      );
+
+  void addAnimationController(AnimationController animationController) => addCustomDisposable(
+        animationController,
+        animationController.dispose,
+      );
 }
 
 extension BlocExtension<E, S> on Bloc<E, S> {
@@ -29,6 +40,20 @@ extension BlocExtension<E, S> on Bloc<E, S> {
 extension ErrorSinkExtension on ErrorSink {
   ErrorSink addToDisposableHolder(DisposableHolder disposableHolder) {
     disposableHolder.addErrorSink(this);
+    return this;
+  }
+}
+
+extension TextEditingControllerExtension on TextEditingController {
+  TextEditingController addToDisposableHolder(DisposableHolder disposableHolder) {
+    disposableHolder.addTextEditingController(this);
+    return this;
+  }
+}
+
+extension AnimationControllerExtension on AnimationController {
+  AnimationController addToDisposableHolder(DisposableHolder disposableHolder) {
+    disposableHolder.addAnimationController(this);
     return this;
   }
 }
