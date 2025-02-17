@@ -4,15 +4,13 @@ import 'package:bloc/bloc.dart';
 import 'package:de_comp_core/de_comp_core.dart';
 
 /// Basic class to extend bloc functionality.
-abstract class BaseBloc<Event, State, Action, Localization>
-    extends Bloc<Event, State> with DisposableHolderMixin {
+abstract class BaseBloc<Event, State, Action, Localization> extends Bloc<Event, State> with DisposableHolderMixin {
   BaseBloc({
     required State baseState,
     required this.localization,
   }) : super(baseState);
 
-  late final _actionsSubject = StreamController<Action>.broadcast()
-      .addToDisposableHolder(disposableHolder);
+  late final _actionsSubject = StreamController<Action>.broadcast().addToDisposableHolder(disposableHolder);
 
   final Localization localization;
 
@@ -24,8 +22,8 @@ abstract class BaseBloc<Event, State, Action, Localization>
   }
 
   @override
-  Future<void> close() {
-    disposableHolder.dispose();
+  Future<void> close() async {
+    await disposableHolder.dispose();
     return super.close();
   }
 }
