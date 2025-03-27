@@ -1,3 +1,9 @@
+## 0.0.5
+
+* Updated `de_comp_core` to version `0.0.7`
+* Added automatic `.addToDisposableHolder` for `bloc()` method of `BaseState`
+* Updated dependencies
+
 ## 0.0.4
 
 * Updated `de_comp_core` to version `0.0.6`
