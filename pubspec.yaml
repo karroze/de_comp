@@ -1,6 +1,6 @@
 name: de_comp
 description: "A component architecture for scalable applications"
-version: 0.0.5
+version: 0.0.6
 homepage: https://github.com/karroze/de_comp
 repository: https://github.com/karroze/de_comp
 
