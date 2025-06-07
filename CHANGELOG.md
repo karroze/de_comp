@@ -1,3 +1,7 @@
+## 0.0.6
+
+* Removed automatically adding bloc to DisposableHolder as this was causing some problems in complex cases
+
 ## 0.0.5
 
 * Updated `de_comp_core` to version `0.0.7`
